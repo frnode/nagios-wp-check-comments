@@ -42,7 +42,7 @@ $text = array();
 $status = 'OK';
 
 foreach ($check_comments as $result){
-    if ($status == '')
+    if ($status == 'OK')
         if ($result['comments_count'] <= 10 AND $status != 'CRITICAL')
             $status = 'WARNING';
         elseif ($result['comments_count'] >= 10)
