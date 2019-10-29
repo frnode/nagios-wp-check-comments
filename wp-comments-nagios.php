@@ -39,7 +39,7 @@ $check_comments = $wpdb->get_results($wpdb->prepare(
 ), ARRAY_A);
 
 $text = array();
-$status = '';
+$status = 'OK';
 
 foreach ($check_comments as $result){
     if ($status == '')
