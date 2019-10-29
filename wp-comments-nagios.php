@@ -39,12 +39,14 @@ $check_comments = $wpdb->get_results($wpdb->prepare(
 ), ARRAY_A);
 
 $text = array();
+$status = '';
 
 foreach ($check_comments as $result){
-    if ($result['comments_count'] >= 4 AND $result['comments_count'] <= 10)
-        $status = 'WARNING';
-    elseif ($result['comments_count'] >= 10)
-        $status = 'CRITICAL';
+    if ($status == '')
+        if ($result['comments_count'] <= 10 AND $status != 'CRITICAL')
+            $status = 'WARNING';
+        elseif ($result['comments_count'] >= 10)
+            $status = 'CRITICAL';
 
     $text[] = $result['comments_count'] . " comments from the IP address/email address: " . $result['comment_author_IP'] . "/" . $result['comment_author_email'];
 }
