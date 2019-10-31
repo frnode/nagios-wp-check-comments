@@ -39,10 +39,10 @@ $check_comments = $wpdb->get_results($wpdb->prepare(
 ), ARRAY_A);
 
 $text = array();
-$status = 'OK';
+$status = 'OK. No spam detected.';
 
 foreach ($check_comments as $result){
-    if ($status == 'OK')
+    if (substr($status,0,3 ) === "OK.")
         if ($result['comments_count'] < 10 AND $status != 'CRITICAL')
             $status = 'WARNING';
         elseif ($result['comments_count'] >= 10)
